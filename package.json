@@ -34,7 +34,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "test": "node --test",
+    "test": "node --test test/css.test.js test/micro.test.js test/skill.test.js test/slab.test.js",
     "build": "node build/generate.mjs",
     "build:skill": "node build/generate.mjs",
     "install:skill": "node build/install-skill.mjs"
