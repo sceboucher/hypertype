@@ -1,0 +1,56 @@
+---
+title: Slab playground
+description: Type a headline and watch hypertype justify it into a magazine slab, live.
+---
+
+Type a headline and watch it change. Press Enter to break it across lines yourself, and hypertype stretches each line to the full width. The same column appears twice: an ordinary CSS heading on top, the hypertype version below. The page loads the real `slab.js` and nothing else, so what you see is what your own page would do.
+
+<div class="ht-playground not-content">
+  <div class="controls">
+    <label class="field">
+      <span>Headline (one line per line, press Enter)</span>
+      <textarea id="ht-input" rows="3" aria-label="Headline text"></textarea>
+    </label>
+    <label class="field">
+      <span>Font</span>
+      <select id="ht-font" aria-label="Font">
+        <option value="ht-slabfont">Archivo (has a width axis)</option>
+        <option value="ht-ser-display">Source Serif 4 (no width axis)</option>
+      </select>
+    </label>
+    <label class="field">
+      <span>Fit mode</span>
+      <select id="ht-mode" aria-label="Fit mode">
+        <option value="auto">auto</option>
+        <option value="width">width axis</option>
+        <option value="size">font size</option>
+      </select>
+    </label>
+  </div>
+
+  <p class="ht-compare-label"><span class="bad">Plain CSS</span> a normal heading: lines stop where the words end</p>
+  <div class="ht-stage"><div id="ht-plain" class="ht-slabfont ht-plain"></div></div>
+
+  <p class="ht-compare-label"><span class="good">hypertype</span> every line is sized to fill the column</p>
+  <div class="ht-stage"><div id="ht-out" class="ht-slabfont"></div></div>
+  <p class="ht-hint" id="ht-hint">slabify(el, &#123; mode: 'auto' &#125;)</p>
+</div>
+
+## What just happened
+
+The top column is just a heading. CSS picks one size for the whole thing and the lines end wherever the words run out, so the right edge is ragged. `text-align: justify` does not help with display type; it only pushes the word spaces apart.
+
+hypertype works line by line instead. It measures the words on a canvas and sizes each line to reach the full width, so the block is flush on both sides. If you add your own line breaks, it keeps them and sizes each line as you wrote it; leave them out and it groups the words into lines of about equal length for you.
+
+If the font has a `wdth` axis (Archivo does), it keeps one font size and stretches each line on the width axis, so every line stays the same height. A font without that axis (Source Serif 4) falls back to scaling the font size per line. Flip the Font and Fit mode dropdowns to watch it switch.
+
+It waits for `document.fonts.ready` before measuring, re-runs on resize, and leaves the real text in the element so screen readers and copy/paste keep working.
+
+In your own page it is two lines:
+
+```html
+<h1 data-slab>Your headline here</h1>
+<script>/* …slab.js… */ slabAll('[data-slab]');</script>
+```
+
+<script type="module" is:inline src="/hypertype/playground.js"></script>

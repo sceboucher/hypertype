@@ -1,0 +1,117 @@
+/* hypertype.css, inlineable advanced-typography core. Zero dependencies.
+ * Paste as a <style> block in any artifact. The production-safe layer ships
+ * unconditionally; every progressive-enhancement feature is behind @supports
+ * with a graceful fallback, so the CSS-only subset stands alone everywhere.
+ * Pairs with slab.js for justified display headlines. */
+
+:root {
+  --ht-ratio: 1.25;                 /* modular scale step */
+  --ht-base: 1.125rem;              /* body size */
+  --ht-leading: 1.55;              /* unitless body leading */
+  --ht-leading-tight: 1.05;        /* display leading */
+  --ht-measure: 66ch;              /* readable line length; tune 58-66 by eye */
+
+  /* Modular scale (each step = previous * --ht-ratio). */
+  --ht-step-0: var(--ht-base);
+  --ht-step-1: calc(var(--ht-step-0) * var(--ht-ratio));
+  --ht-step-2: calc(var(--ht-step-1) * var(--ht-ratio));
+  --ht-step-3: calc(var(--ht-step-2) * var(--ht-ratio));
+  --ht-step-4: calc(var(--ht-step-3) * var(--ht-ratio));
+  /* Fluid display size for hero headings (min, preferred, max). */
+  --ht-display: clamp(2.5rem, 1.5rem + 6vw, 6rem);
+}
+
+/* Production-safe layer, interoperable across Chrome/Edge/Firefox/Safari. */
+.ht {
+  font-size: var(--ht-step-0);
+  line-height: var(--ht-leading);
+  font-kerning: normal;
+  font-optical-sizing: auto;                      /* honors opsz if present */
+  font-variant-ligatures: common-ligatures contextual;
+  text-rendering: optimizeLegibility;
+}
+.ht :where(h1, h2, h3, h4) {
+  line-height: var(--ht-leading-tight);
+  letter-spacing: -0.015em;                       /* tighten large display */
+  text-wrap: balance;                             /* Baseline 2024 */
+  font-optical-sizing: auto;
+}
+.ht :where(h1) { font-size: var(--ht-step-4); }
+.ht :where(h2) { font-size: var(--ht-step-3); }
+.ht :where(h3) { font-size: var(--ht-step-2); }
+.ht :where(h4) { font-size: var(--ht-step-1); }
+.ht :where(p, li) { text-wrap: pretty; }          /* enhancement; FF wraps normally */
+
+/* Readable measure. */
+.ht-measure, .ht :where(p, li, blockquote) { max-inline-size: var(--ht-measure); }
+.ht-measure-cjk { max-inline-size: 34em; }        /* ch is unreliable for CJK */
+
+/* Display heading helper (use with slab.js, or alone for fluid display). */
+.ht-display {
+  font-size: var(--ht-display);
+  line-height: var(--ht-leading-tight);
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+
+/* --- OpenType utilities (font-variant-* longhands: composable, inheritable) --- */
+.ht-tnum   { font-variant-numeric: tabular-nums; }            /* tables, tickers */
+.ht-onum   { font-variant-numeric: oldstyle-nums proportional-nums; } /* prose */
+.ht-lnum   { font-variant-numeric: lining-nums; }
+.ht-zero   { font-variant-numeric: slashed-zero; }            /* IDs, code, data */
+.ht-data   { font-variant-numeric: tabular-nums slashed-zero; }
+.ht-frac   { font-variant-numeric: diagonal-fractions; }      /* scope tightly */
+.ht-smallcaps { font-variant-caps: all-small-caps; }          /* acronyms */
+.ht-dlig   { font-variant-ligatures: discretionary-ligatures; } /* display only */
+.ht-ssup   { font-variant-position: super; }
+.ht-ssub   { font-variant-position: sub; }
+/* case-sensitive forms have no font-variant mapping, must use the raw tag. */
+.ht-caps   { text-transform: uppercase; font-feature-settings: "case" 1; letter-spacing: 0.04em; }
+
+/* Justified body copy: hyphenation is the river-killer. Needs lang on the element. */
+.ht-justify {
+  text-align: justify;
+  text-justify: inter-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  text-wrap: pretty;
+}
+
+/* --- Progressive enhancement, gated, with graceful fallbacks --- */
+
+/* Cap-height/baseline trim for optically even spacing (Chrome 133+, Safari 18.2+). */
+@supports (text-box-trim: trim-both) {
+  .ht :where(h1, h2, h3, h4), .ht-display, .ht-trim {
+    text-box: trim-both cap alphabetic;
+  }
+}
+
+/* Drop cap. @supports gates initial-letter; fallback below is a float drop cap. */
+.ht-dropcap::first-letter {
+  font-size: 3.4em;
+  float: left;
+  line-height: 0.82;
+  padding-right: 0.08em;
+  font-weight: 700;
+}
+@supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
+  .ht-dropcap::first-letter {
+    -webkit-initial-letter: 3 3;
+    initial-letter: 3 3;
+    font-size: inherit;
+    float: none;
+    line-height: inherit;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Optical margin alignment. Native is Safari-only; approximate elsewhere. */
+.ht-hang { text-indent: -0.42em; }
+@supports (hanging-punctuation: first) {
+  .ht-hang { text-indent: 0; hanging-punctuation: first allow-end last; }
+}
+
+/* Finer hyphenation control where supported (Chrome 109+, Safari 17+; not FF). */
+@supports (hyphenate-limit-chars: 6 3 3) {
+  .ht-justify, .ht-hyphenate { hyphenate-limit-chars: 6 3 3; }
+}

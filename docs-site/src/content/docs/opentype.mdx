@@ -1,0 +1,48 @@
+---
+title: OpenType gallery
+description: The underused OpenType features, rendering live. Pure CSS, no JavaScript.
+---
+
+Every sample below is live in your browser, set with the same `font-variant-*` utility classes hypertype ships. No JavaScript: this is pure CSS that any font with the feature will render.
+
+<div class="ht-gallery not-content">
+
+  <div class="ht-card">
+    <h3>Tabular figures</h3>
+    <span class="tag">.ht-tnum</span>
+    <div class="sample" style="font-variant-numeric: tabular-nums;">1,024.50<br/>9,870.05</div>
+  </div>
+
+  <div class="ht-card">
+    <h3>Oldstyle figures</h3>
+    <span class="tag">.ht-onum</span>
+    <div class="sample" style="font-variant-numeric: oldstyle-nums;">In 1847, 0123456789</div>
+  </div>
+
+  <div class="ht-card">
+    <h3>Slashed zero</h3>
+    <span class="tag">.ht-zero</span>
+    <div class="sample" style="font-variant-numeric: slashed-zero;">ID 0xC0FFEE0</div>
+  </div>
+
+  <div class="ht-card">
+    <h3>True small caps</h3>
+    <span class="tag">.ht-smallcaps</span>
+    <div class="sample" style="font-variant-caps: all-small-caps;">NASA, PDF, HTML</div>
+  </div>
+
+  <div class="ht-card">
+    <h3>Fractions</h3>
+    <span class="tag">.ht-frac</span>
+    <div class="sample" style="font-variant-numeric: diagonal-fractions;">1/2 3/4 7/8 21/32</div>
+  </div>
+
+  <div class="ht-card">
+    <h3>Ligatures</h3>
+    <span class="tag">font-variant-ligatures</span>
+    <div class="sample" style="font-variant-ligatures: common-ligatures discretionary-ligatures;">fi fl ffi  &middot;  ct st</div>
+  </div>
+
+</div>
+
+These compose: a data table wants `tabular-nums slashed-zero`, running prose wants `oldstyle-nums`, an acronym in text wants `all-small-caps`. Prefer the `font-variant-*` longhands over `font-feature-settings`, which is all-or-nothing and silently clobbers other features. The full tag catalog, including stylistic sets and the must-use-the-raw-tag cases (`case`, `ss01`–`ss20`, swashes, titling caps), is in the [reference](/hypertype/reference/).

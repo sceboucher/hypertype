@@ -1,0 +1,128 @@
+/* The docs are set with hypertype's own type. */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62.5..125,400..900&family=Source+Serif+4:opsz,wght@8..60,400;600;700&display=swap');
+
+:root {
+  --sl-color-accent-low: #3a2c10;
+  --sl-color-accent: #b07d2b;
+  --sl-color-accent-high: #ecd9b0;
+  --ht-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+}
+
+/* Headings and the wordmark in a serif, against the sans body. */
+.site-title,
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+h1#_top {
+  font-family: var(--ht-display);
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.site-title { font-weight: 700; font-size: 1.35rem; }
+
+.sl-markdown-content p,
+.sl-markdown-content li {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  text-wrap: pretty;
+}
+
+/* Tabular, slashed-zero figures in tables so the columns line up. */
+.sl-markdown-content table {
+  font-variant-numeric: tabular-nums slashed-zero;
+}
+
+/* ---- Slab playground ---- */
+.ht-playground {
+  margin: 1.5rem 0 2rem;
+  padding: 1.25rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.75rem;
+  background: var(--sl-color-gray-7, var(--sl-color-black));
+}
+.ht-playground .controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-bottom: 1.25rem;
+  align-items: flex-end;
+}
+.ht-playground .field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.ht-playground .field:first-child { flex: 1 1 18rem; }
+.ht-playground .field > span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-3);
+}
+.ht-playground input[type="text"],
+.ht-playground textarea {
+  font: inherit;
+  padding: 0.55rem 0.7rem;
+  border: 2px solid var(--sl-color-accent);
+  border-radius: 0.4rem;
+  background: var(--sl-color-bg);
+  color: var(--sl-color-text);
+}
+.ht-playground textarea {
+  width: 100%;
+  resize: vertical;
+  line-height: 1.4;
+}
+.ht-playground select {
+  font: inherit;
+  padding: 0.45rem 0.5rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.4rem;
+  background: var(--sl-color-bg);
+  color: var(--sl-color-text);
+}
+.ht-stage {
+  border-left: 2px solid var(--sl-color-accent);
+  border-right: 2px solid var(--sl-color-accent);
+  padding: 0.25rem 0;
+  min-height: 2rem;
+}
+.ht-stage > div { color: var(--sl-color-white); }
+.ht-slabfont { font-family: "Archivo", system-ui, sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: -0.005em; }
+.ht-ser-display { font-family: "Source Serif 4", Georgia, serif; font-weight: 700; }
+.ht-hint { font-size: 0.85rem; color: var(--sl-color-gray-3); margin-top: 0.6rem; font-family: var(--sl-font-mono, monospace); }
+
+/* Plain CSS reference: an ordinary heading, ragged right, stops short of the rule. */
+.ht-plain {
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  line-height: 1.05;
+  text-align: left;
+  white-space: pre-line;
+}
+.ht-compare-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 1.4rem 0 0.4rem;
+  font-size: 0.95rem;
+  color: var(--sl-color-gray-2);
+}
+.ht-compare-label .bad,
+.ht-compare-label .good {
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.12rem 0.5rem;
+  border-radius: 1rem;
+}
+.ht-compare-label .bad { background: #4a2a2a; color: #f0b4b4; }
+.ht-compare-label .good { background: #2a3a28; color: #aee2a0; }
+
+/* ---- OpenType gallery ---- */
+.ht-gallery { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin: 1.5rem 0; }
+.ht-card { border: 1px solid var(--sl-color-gray-5); border-radius: 0.6rem; padding: 1rem 1.1rem; }
+.ht-card h3 { margin: 0 0 0.2rem; font-size: 0.95rem; }
+.ht-card .tag { font-family: var(--sl-font-mono, monospace); font-size: 0.8rem; color: var(--sl-color-accent); }
+.ht-card .sample { font-family: "Source Serif 4", Georgia, serif; font-size: 1.7rem; line-height: 1.2; margin-top: 0.5rem; }

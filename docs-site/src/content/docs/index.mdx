@@ -1,0 +1,51 @@
+---
+title: hypertype
+description: Justified display headlines and the OpenType features almost nobody turns on. No dependencies, paste it inline.
+template: splash
+hero:
+  tagline: Justified display headlines and the OpenType features almost nobody turns on. No dependencies, paste it into a page.
+  actions:
+    - text: Get started
+      link: /hypertype/getting-started/
+      icon: right-arrow
+    - text: Try the playground
+      link: /hypertype/playground/
+      icon: right-arrow
+      variant: secondary
+    - text: GitHub
+      link: https://github.com/sceboucher/hypertype
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+CSS can justify a paragraph but not a display headline. hypertype makes every line of a heading fill the column the way print does, and turns on the OpenType features (tabular figures, real small caps, fractions) most generated markup skips. About 6&nbsp;kB, no dependencies, paste it into a page.
+
+## The same page, before and after
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-items:start;margin:1.5rem 0;">
+  <figure style="margin:0;">
+    <img src="/hypertype/media/before.png" alt="An editorial layout in a default sans-serif" style="border-radius:0.5rem;border:1px solid var(--sl-color-gray-5);" />
+    <figcaption style="text-align:center;color:var(--sl-color-gray-3);font-size:0.9rem;margin-top:0.4rem;">Plain CSS</figcaption>
+  </figure>
+  <figure style="margin:0;">
+    <img src="/hypertype/media/after.png" alt="The same layout with a justified slab headline and OpenType typography" style="border-radius:0.5rem;border:1px solid var(--sl-color-gray-5);" />
+    <figcaption style="text-align:center;color:var(--sl-color-gray-3);font-size:0.9rem;margin-top:0.4rem;">With hypertype</figcaption>
+  </figure>
+</div>
+
+<CardGrid>
+  <Card title="The slab headline" icon="seti:html">
+    `slab.js` measures the words, breaks them into lines, and sizes each line to fill the column. Plain CSS has no way to do this.
+  </Card>
+  <Card title="The OpenType layer" icon="seti:font">
+    Tabular, oldstyle, and slashed-zero figures, true small caps, fractions, ligatures, as utility classes that compose.
+  </Card>
+  <Card title="Paste it inline" icon="rocket">
+    No build, no npm, no stylesheet to fetch. One file in a page, which is also the only thing that works in AI tools that won't run a build.
+  </Card>
+  <Card title="Also a Claude skill" icon="comment">
+    The kit ships as an Agent Skill too, so AI coding tools pick it up on their own. [Use as a skill →](/hypertype/skill/)
+  </Card>
+</CardGrid>
