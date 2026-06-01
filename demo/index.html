@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hypertype demo</title>
+<style>
+  body {
+    margin: 0;
+    background: #faf8f4;
+    color: #16130f;
+    font-family: Georgia, "Times New Roman", serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 6rem; }
+  .label {
+    font: 600 0.72rem/1 ui-monospace, monospace;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9a8f7d;
+    margin: 2.6rem 0 0.6rem;
+  }
+
+  .slab {
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0;
+    border-left: 2px solid #d9534f;
+    border-right: 2px solid #d9534f;
+  }
+  /* Width-axis slab: a variable font that carries a wdth axis. */
+  .slab-var { font-family: "Archivo", system-ui, sans-serif; }
+  /* No-axis slab: forces the font-size scaling fallback. */
+  .slab-fixed { font-family: "Archivo Black", Impact, sans-serif; }
+
+  blockquote {
+    font-size: 1.6rem;
+    line-height: 1.4;
+    margin: 0;
+    padding-left: 1rem;
+    border-left: 3px solid #c9b8a0;
+    max-width: 30ch;
+  }
+</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wdth,wght@62.5..125,400..900&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="page">
+
+  <div class="label">Width-axis slab (uniform height, lines stretched by the wdth axis)</div>
+  <h1 class="slab slab-var" data-slab>The quick brown fox jumps over the lazy dog</h1>
+
+  <div class="label">Size-scaling slab (font with no width axis, the fallback path)</div>
+  <h1 class="slab slab-fixed" data-slab>The quick brown fox jumps over the lazy dog</h1>
+
+  <div class="label">Hanging punctuation OFF (quote sits inside the rule)</div>
+  <blockquote>"Typography is the craft of endowing human language with a durable visual form."</blockquote>
+
+  <div class="label">Hanging punctuation ON via micro.js (quote hangs into the margin; quotes curled)</div>
+  <blockquote data-micro>"Typography is the craft of endowing human language with a durable visual form."</blockquote>
+
+</div>
+
+<script type="module">
+  import { slabAll } from '../src/slab.js';
+  import { micro } from '../src/micro.js';
+  slabAll('[data-slab]');
+  micro('[data-micro]');
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+node_modules/
+*.log
+.DS_Store
+
+# local verification scratch
+demo/_*
+
+# docs-site build artifacts
+docs-site/dist/
+docs-site/.astro/
+docs-site/_*

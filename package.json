@@ -1,0 +1,42 @@
+{
+  "name": "hypertype",
+  "version": "0.1.0",
+  "description": "Advanced web typography for AI coding tools: justified display headlines (the magazine slab effect) plus underused OpenType features. Zero dependencies, inline-first.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sceboucher/hypertype.git"
+  },
+  "homepage": "https://github.com/sceboucher/hypertype#readme",
+  "bugs": "https://github.com/sceboucher/hypertype/issues",
+  "keywords": [
+    "typography",
+    "web-typography",
+    "opentype",
+    "justified",
+    "display-headlines",
+    "slab",
+    "variable-fonts",
+    "hanging-punctuation",
+    "css",
+    "agent-skill"
+  ],
+  "files": [
+    "src/",
+    "dist/",
+    "skill/",
+    "docs/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test",
+    "build": "node build/generate.mjs",
+    "build:skill": "node build/generate.mjs",
+    "install:skill": "node build/install-skill.mjs"
+  }
+}
