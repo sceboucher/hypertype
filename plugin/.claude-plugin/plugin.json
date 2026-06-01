@@ -1,0 +1,9 @@
+{
+  "name": "hypertype",
+  "version": "0.1.0",
+  "description": "Advanced web typography for AI coding tools: justified display headlines (the magazine slab effect) and the underused OpenType features CSS forgot. Inline-first.",
+  "author": {
+    "name": "sceboucher"
+  },
+  "homepage": "https://github.com/sceboucher/hypertype"
+}

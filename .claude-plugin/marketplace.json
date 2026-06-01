@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "hypertype",
+  "description": "hypertype: advanced web typography as a Claude Code skill.",
+  "owner": {
+    "name": "sceboucher"
+  },
+  "plugins": [
+    {
+      "name": "hypertype",
+      "source": "./plugin",
+      "description": "Justified display headlines and the OpenType features CSS forgot. Inline-first; works in AI artifact sandboxes with no build step.",
+      "version": "0.1.0",
+      "author": {
+        "name": "sceboucher"
+      },
+      "homepage": "https://github.com/sceboucher/hypertype",
+      "category": "productivity",
+      "keywords": ["typography", "opentype", "css", "design", "headlines"]
+    }
+  ]
+}
