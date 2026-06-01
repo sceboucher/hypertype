@@ -1,5 +1,5 @@
 {
-  "name": "@hypertype/mcp",
+  "name": "@sceboucher/hypertype",
   "version": "0.1.0",
   "description": "Local MCP server for hypertype: verify what OpenType features and variable axes a font actually ships, generate verified type systems, and critique typographic hierarchy.",
   "type": "module",

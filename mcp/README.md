@@ -1,4 +1,4 @@
-# @hypertype/mcp
+# @sceboucher/hypertype
 
 A local MCP server that verifies typography against the real font file, so generated
 CSS turns on features the font actually ships instead of silently doing nothing. It also
@@ -35,19 +35,19 @@ straight from the served sfnt, so the answer is the truth, not the foundry's spe
 
 One-click, on the tools that support MCP install deeplinks:
 
-[![Add to Cursor](https://img.shields.io/badge/Cursor-add_MCP-111111?style=for-the-badge)](cursor://anysphere.cursor-deeplink/mcp/install?name=hypertype&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBoeXBlcnR5cGUvbWNwIl19)
-[![Install in VS Code](https://img.shields.io/badge/VS_Code-add_MCP-0098FF?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=hypertype&config=%7B%22name%22%3A%22hypertype%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40hypertype%2Fmcp%22%5D%7D)
+[![Add to Cursor](https://img.shields.io/badge/Cursor-add_MCP-111111?style=for-the-badge)](cursor://anysphere.cursor-deeplink/mcp/install?name=hypertype&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzY2Vib3VjaGVyL2h5cGVydHlwZSJdfQ==)
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-add_MCP-0098FF?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=hypertype&config=%7B%22name%22%3A%22hypertype%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40sceboucher%2Fhypertype%22%5D%7D)
 
 Or configure it by hand. The command is the same everywhere:
 
 ```json
 {
   "command": "npx",
-  "args": ["-y", "@hypertype/mcp"]
+  "args": ["-y", "@sceboucher/hypertype"]
 }
 ```
 
-- **Claude Code:** `claude mcp add hypertype -- npx -y @hypertype/mcp`
+- **Claude Code:** `claude mcp add hypertype -- npx -y @sceboucher/hypertype`
 - **Claude Desktop:** add the block above under `mcpServers` in `claude_desktop_config.json`.
 - **Cursor / VS Code:** add it under `mcpServers` (or use the buttons above).
 

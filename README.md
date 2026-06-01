@@ -79,12 +79,12 @@ The rest (Cursor, the agent CLIs, pasting into ChatGPT or Claude Desktop) are a 
 
 ## Verify fonts for real: the MCP server
 
-The skill tells a model to check that a font carries a feature before turning it on. [`@hypertype/mcp`](mcp/) lets it actually check. It's a local MCP server that reads the OpenType features and variable axes straight from the served font file, so `font-variant-caps: small-caps` on a font with no small caps comes back as a real warning instead of a silent fake. It also generates context-fit type systems and critiques typographic hierarchy from rendered CSS.
+The skill tells a model to check that a font carries a feature before turning it on. [`@sceboucher/hypertype`](mcp/) lets it actually check. It's a local MCP server that reads the OpenType features and variable axes straight from the served font file, so `font-variant-caps: small-caps` on a font with no small caps comes back as a real warning instead of a silent fake. It also generates context-fit type systems and critiques typographic hierarchy from rendered CSS.
 
-[![Add to Cursor](https://img.shields.io/badge/Cursor-add_MCP-111111?style=for-the-badge)](cursor://anysphere.cursor-deeplink/mcp/install?name=hypertype&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBoeXBlcnR5cGUvbWNwIl19)
-[![Install MCP in VS Code](https://img.shields.io/badge/VS_Code-add_MCP-0098FF?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=hypertype&config=%7B%22name%22%3A%22hypertype%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40hypertype%2Fmcp%22%5D%7D)
+[![Add to Cursor](https://img.shields.io/badge/Cursor-add_MCP-111111?style=for-the-badge)](cursor://anysphere.cursor-deeplink/mcp/install?name=hypertype&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzY2Vib3VjaGVyL2h5cGVydHlwZSJdfQ==)
+[![Install MCP in VS Code](https://img.shields.io/badge/VS_Code-add_MCP-0098FF?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=hypertype&config=%7B%22name%22%3A%22hypertype%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40sceboucher%2Fhypertype%22%5D%7D)
 
-In **Claude Code**: `claude mcp add hypertype -- npx -y @hypertype/mcp`. It runs locally with no API key, and is the only path that can analyze your installed and Adobe-activated fonts. Ten tools (`analyze_font`, `check_css`, `recommend_css`, `design_type_system`, `critique_hierarchy`, and more) are documented in [mcp/README.md](mcp/README.md).
+In **Claude Code**: `claude mcp add hypertype -- npx -y @sceboucher/hypertype`. It runs locally with no API key, and is the only path that can analyze your installed and Adobe-activated fonts. Ten tools (`analyze_font`, `check_css`, `recommend_css`, `design_type_system`, `critique_hierarchy`, and more) are documented in [mcp/README.md](mcp/README.md).
 
 The deeper typographic judgment the server encodes is written up in two guides: [building a type system](docs/TYPE-SYSTEMS.md) and [using hierarchy well](docs/HIERARCHY.md).
 
