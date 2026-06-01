@@ -3,14 +3,14 @@ title: OpenType gallery
 description: The underused OpenType features, rendering live. Pure CSS, no JavaScript.
 ---
 
-Every sample below is live in your browser, set with the same `font-variant-*` utility classes hypertype ships. No JavaScript: this is pure CSS that any font with the feature will render.
+Every sample below is live in your browser, set with the same `font-variant-*` utility classes hypertype ships. No JavaScript. The catch with OpenType is that the font has to carry the feature: most of these use Source Serif 4, but a slashed zero and true small caps are rarer, so those two are shown in IBM Plex Mono and EB Garamond.
 
 <div class="ht-gallery not-content">
 
   <div class="ht-card">
     <h3>Tabular figures</h3>
     <span class="tag">.ht-tnum</span>
-    <div class="sample" style="font-variant-numeric: tabular-nums;">1,024.50<br/>9,870.05</div>
+    <div class="sample" style="font-variant-numeric: tabular-nums lining-nums;">1,024.50<br/>9,870.05</div>
   </div>
 
   <div class="ht-card">
@@ -22,13 +22,13 @@ Every sample below is live in your browser, set with the same `font-variant-*` u
   <div class="ht-card">
     <h3>Slashed zero</h3>
     <span class="tag">.ht-zero</span>
-    <div class="sample" style="font-variant-numeric: slashed-zero;">ID 0xC0FFEE0</div>
+    <div class="sample mono" style="font-variant-numeric: slashed-zero;">0 vs O &middot; ID 10042</div>
   </div>
 
   <div class="ht-card">
     <h3>True small caps</h3>
     <span class="tag">.ht-smallcaps</span>
-    <div class="sample" style="font-variant-caps: all-small-caps;">NASA, PDF, HTML</div>
+    <div class="sample sc" style="font-variant-caps: all-small-caps;">the nasa report</div>
   </div>
 
   <div class="ht-card">
