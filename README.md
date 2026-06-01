@@ -81,6 +81,14 @@ The rest (Cursor, the agent CLIs, pasting into ChatGPT or Claude Desktop) are a 
 
 The skill tells a model to check that a font carries a feature before turning it on. [`@sceboucher/hypertype`](mcp/) lets it actually check. It's a local MCP server that reads the OpenType features and variable axes straight from the served font file, so `font-variant-caps: small-caps` on a font with no small caps comes back as a real warning instead of a silent fake. It also generates context-fit type systems and critiques typographic hierarchy from rendered CSS.
 
+**Easiest install, point your AI at one file.** Tell any assistant: *"Set up hypertype by following https://raw.githubusercontent.com/sceboucher/hypertype/main/INSTALL.md"* and it installs the server and the skill for whatever tool it's in. Or do it yourself in one command:
+
+```sh
+npx -y @sceboucher/hypertype install
+```
+
+It detects your tools (Claude Code, Cursor, VS Code, Claude Desktop), registers the MCP server idempotently, and installs the skill. The buttons and manual steps below still work if you prefer them.
+
 [![Add to Cursor](https://img.shields.io/badge/Cursor-add_MCP-111111?style=for-the-badge)](cursor://anysphere.cursor-deeplink/mcp/install?name=hypertype&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzY2Vib3VjaGVyL2h5cGVydHlwZSJdfQ==)
 [![Install MCP in VS Code](https://img.shields.io/badge/VS_Code-add_MCP-0098FF?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=hypertype&config=%7B%22name%22%3A%22hypertype%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40sceboucher%2Fhypertype%22%5D%7D)
 
