@@ -29,6 +29,15 @@ This is the one genuine one-click install. The button installs hypertype as a Co
 
 It uses VS Code's built-in `vscode:chat-instructions/install` handler (1.102+), pointed at [`dist/hypertype.instructions.md`](https://github.com/sceboucher/hypertype/blob/main/dist/hypertype.instructions.md). That file is generated from the same source as the skill, so it carries the same guidance. (This installs the instructions, not `slab.js`; for the justified-headline engine, inline `slab.js` per [Getting started](/hypertype/getting-started/).)
 
+## The MCP server (verify fonts for real)
+
+The skill tells a model to verify a font carries a feature before using it. [`@hypertype/mcp`](https://github.com/sceboucher/hypertype/tree/main/mcp) lets it actually check, by reading the OpenType features and variable axes straight from the served font file. It also generates context-fit type systems and critiques typographic hierarchy. It runs locally with no API key, and is the only path that can analyze your installed and Adobe-activated fonts.
+
+[![Add to Cursor](https://img.shields.io/badge/Cursor-add_MCP-111111?style=for-the-badge)](cursor://anysphere.cursor-deeplink/mcp/install?name=hypertype&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBoeXBlcnR5cGUvbWNwIl19)
+[![Install MCP in VS Code](https://img.shields.io/badge/VS_Code-add_MCP-0098FF?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=hypertype&config=%7B%22name%22%3A%22hypertype%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40hypertype%2Fmcp%22%5D%7D)
+
+In **Claude Code**: `claude mcp add hypertype -- npx -y @hypertype/mcp`. Everywhere else, the command is `npx -y @hypertype/mcp` under your client's `mcpServers` config. Ten tools (`analyze_font`, `check_css`, `recommend_css`, `design_type_system`, `critique_hierarchy`, and more) are documented in the [package README](https://github.com/sceboucher/hypertype/tree/main/mcp).
+
 ## Cursor
 
 `SKILL.md` works in Cursor unchanged. Drop the skill folder into a project's `.cursor/skills/` (or your global skills directory) and reload the workspace:

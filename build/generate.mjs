@@ -91,6 +91,8 @@ function main() {
   mkdirSync(join(root, 'skill/references'), { recursive: true });
   mkdirSync(join(root, 'skill/assets'), { recursive: true });
   copyFileSync(join(root, 'docs/REFERENCE.md'), join(root, 'skill/references/REFERENCE.md'));
+  copyFileSync(join(root, 'docs/TYPE-SYSTEMS.md'), join(root, 'skill/references/TYPE-SYSTEMS.md'));
+  copyFileSync(join(root, 'docs/HIERARCHY.md'), join(root, 'skill/references/HIERARCHY.md'));
   copyFileSync(join(root, 'src/hypertype.css'), join(root, 'skill/assets/hypertype.css'));
   copyFileSync(join(root, 'src/slab.js'), join(root, 'skill/assets/slab.js'));
   copyFileSync(join(root, 'src/micro.js'), join(root, 'skill/assets/micro.js'));
