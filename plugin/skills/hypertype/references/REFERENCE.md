@@ -52,6 +52,15 @@ Tag value syntax for `font-feature-settings`: `"tag" 1` / `"tag" on` = enabled, 
 
 **Discovering what a font's `ssNN`/`cvNN` do:** there is no standard meaning. Inspect with [Wakamai Fondue](https://wakamaifondue.com), the foundry's specimen, or fontkit/opentype.js reading the GSUB FeatureList + `name` table labels.
 
+**Check the file the browser actually loads, not the foundry spec.** A `font-variant-*` rule is a no-op when the font lacks the glyphs, and Chrome does not synthesize caps-to-small-caps. Google Fonts frequently serves a reduced subset: Source Serif 4 has small caps and a slashed zero in Adobe's release but neither in Google's woff2. Verify the served file. Drop the woff2 (the URL is in the `@font-face` `src` when you request the Google CSS with a current browser User-Agent) into [wakamaifondue.com](https://wakamaifondue.com), or run the CLI:
+
+```sh
+npx @wakamai-fondue/cli -j font.woff2   # JSON: features, axes, glyphs
+npx @wakamai-fondue/cli -c font.woff2   # CSS, every feature as a class
+```
+
+`fonttools` (`ttx -t GSUB font.ttf`) and `fontkit`'s `availableFeatures` give the same answer programmatically.
+
 ### `@font-feature-values` (readable names for sets)
 
 ```css

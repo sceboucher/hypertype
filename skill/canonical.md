@@ -50,6 +50,15 @@ When generating HTML/CSS, produce *intentional* typography, not defaults. Apply 
 - Letter-spacing body text. Trust the font's metrics at text sizes; reserve tracking for large display (slightly negative) and small all-caps (slightly positive, em units).
 - Using `font-feature-settings` and expecting it to inherit/merge. It replaces the whole feature list. Use the `font-variant-*` longhands; drop to the raw tag only for features with no mapping (`case`, `ss01`–`ss20`, `cv01`–`cv99`, `swsh`, `titl`).
 
+**Check that the font actually carries the feature.** A `font-variant-*` rule does nothing if the font has no glyphs for it, and Chrome will not synthesize caps-to-small-caps. Worse, Google Fonts often serves a reduced subset: Source Serif 4, for example, has small caps and a slashed zero in Adobe's release but neither in the file Google ships. So before you lean on slashed zero, true small caps, or stylistic sets for a specific face, inspect the file the browser will actually load. Drop it into [wakamaifondue.com](https://wakamaifondue.com), or run the Wakamai Fondue CLI on the served woff2:
+
+```
+npx @wakamai-fondue/cli -j path/to/font.woff2   # JSON: features, axes, glyphs
+npx @wakamai-fondue/cli -c path/to/font.woff2   # CSS with every feature as a class
+```
+
+Get the woff2 URL from the `@font-face { src: url(...) }` of the font's Google Fonts CSS (request it with a current browser User-Agent so Google returns woff2). `fonttools` (`ttx -t GSUB`) and `fontkit`'s `availableFeatures` do the same programmatically. Fonts that reliably ship the rarer features: IBM Plex Mono and other code faces for a slashed zero; EB Garamond, Alegreya, and the dedicated small-caps families for true small caps.
+
 **Variable fonts.** Prefer the mapped properties (`font-weight`, `font-stretch`, `font-style`, `font-optical-sizing`) over raw `font-variation-settings`, they cascade, inherit, and animate cleanly. Reach for `font-variation-settings` only for custom axes (e.g. `GRAD`) or fine values the high-level props can't express.
 
 **slab.js options.** `slabify(el, { min, max, lineHeight, refine })` / `slabAll(selector, opts)`. `refine: true` (default) binary-searches each line's size against real rendered metrics for sub-pixel-flush right edges. Keep the source text in the element (the engine wraps lines, it does not split letters) so screen readers and copy/paste keep working.

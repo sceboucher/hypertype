@@ -21,6 +21,7 @@ export default defineConfig({
           label: 'Start',
           items: [
             { label: 'Getting started', slug: 'getting-started' },
+            { label: 'Install the skill', slug: 'install' },
             { label: 'Use as a Claude skill', slug: 'skill' },
           ],
         },
