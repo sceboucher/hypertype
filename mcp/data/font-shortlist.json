@@ -1,0 +1,40 @@
+{
+  "note": "Named aesthetic -> a curated shortlist. Deliberately excludes the reflexive AI picks (Inter, Roboto, Open Sans, Lato, system fonts) and the LLM-favorite display faces (Fraunces, Space Grotesk, Instrument Serif). Feature claims are starting hints; verify against the served file with analyze_font before relying on a feature.",
+  "directions": {
+    "editorial": {
+      "display": ["Newsreader", "Spectral", "Libre Caslon Display", "Bodoni Moda"],
+      "text": ["Source Serif 4", "Spectral", "Newsreader"],
+      "carries": ["onum", "smcp", "liga"]
+    },
+    "technical": {
+      "display": ["IBM Plex Sans", "IBM Plex Serif", "Archivo"],
+      "text": ["IBM Plex Sans", "Source Sans 3", "IBM Plex Serif"],
+      "carries": ["tnum", "zero", "case"]
+    },
+    "grotesque": {
+      "display": ["Archivo", "Hanken Grotesk", "Schibsted Grotesk", "Bricolage Grotesque"],
+      "text": ["Hanken Grotesk", "Schibsted Grotesk", "Asap"],
+      "carries": ["tnum", "case"]
+    },
+    "humanist": {
+      "display": ["Asap", "Be Vietnam Pro", "Hanken Grotesk"],
+      "text": ["Asap", "Source Sans 3", "Be Vietnam Pro"],
+      "carries": ["onum", "liga"]
+    },
+    "expressive-display": {
+      "display": ["Bricolage Grotesque", "Big Shoulders Display", "Unbounded", "Anton"],
+      "text": ["Hanken Grotesk", "Source Sans 3"],
+      "carries": ["case"]
+    },
+    "serif-display": {
+      "display": ["DM Serif Display", "Playfair Display", "Bodoni Moda", "Newsreader"],
+      "text": ["Source Serif 4", "Spectral"],
+      "carries": ["onum", "liga"]
+    },
+    "code": {
+      "display": ["JetBrains Mono", "IBM Plex Mono"],
+      "text": ["JetBrains Mono", "IBM Plex Mono", "Fira Code"],
+      "carries": ["zero", "tnum", "calt"]
+    }
+  }
+}

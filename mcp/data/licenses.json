@@ -1,0 +1,36 @@
+{
+  "note": "License class per family. 'ofl' and 'apache' are freely self-hostable. 'adobe' fonts (Adobe Fonts / Typekit) cannot be redistributed or self-hosted. Unknown families default to 'verify'. This is a curated starter list, not exhaustive.",
+  "classes": {
+    "ofl": "SIL Open Font License: free to use, bundle, and self-host.",
+    "apache": "Apache 2.0: free to use, bundle, and self-host.",
+    "adobe": "Adobe Fonts license: web-use via Adobe's CDN only; cannot self-host or redistribute the file.",
+    "verify": "License not in the table; check the foundry before shipping or self-hosting."
+  },
+  "families": {
+    "source serif 4": "ofl",
+    "source sans 3": "ofl",
+    "ibm plex sans": "ofl",
+    "ibm plex serif": "ofl",
+    "ibm plex mono": "ofl",
+    "newsreader": "ofl",
+    "spectral": "ofl",
+    "hanken grotesk": "ofl",
+    "schibsted grotesk": "ofl",
+    "archivo": "ofl",
+    "asap": "ofl",
+    "be vietnam pro": "ofl",
+    "bricolage grotesque": "ofl",
+    "jetbrains mono": "ofl",
+    "fira code": "ofl",
+    "playfair display": "ofl",
+    "dm serif display": "ofl",
+    "bodoni moda": "ofl",
+    "libre caslon display": "ofl",
+    "big shoulders display": "ofl",
+    "unbounded": "ofl",
+    "anton": "ofl",
+    "roboto": "apache",
+    "open sans": "ofl",
+    "inter": "ofl"
+  }
+}

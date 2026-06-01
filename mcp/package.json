@@ -1,0 +1,44 @@
+{
+  "name": "@hypertype/mcp",
+  "version": "0.1.0",
+  "description": "Local MCP server for hypertype: verify what OpenType features and variable axes a font actually ships, generate verified type systems, and critique typographic hierarchy.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sceboucher/hypertype.git",
+    "directory": "mcp"
+  },
+  "homepage": "https://github.com/sceboucher/hypertype#readme",
+  "bugs": "https://github.com/sceboucher/hypertype/issues",
+  "keywords": [
+    "mcp",
+    "typography",
+    "opentype",
+    "fontkit",
+    "variable-fonts",
+    "type-system",
+    "model-context-protocol"
+  ],
+  "bin": {
+    "hypertype-mcp": "bin/hypertype-mcp.mjs"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "data/"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node bin/hypertype-mcp.mjs",
+    "test": "node --test",
+    "build:index": "node src/index-build.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "fontkit": "^2.0.0",
+    "wawoff2": "^2.0.1"
+  }
+}
