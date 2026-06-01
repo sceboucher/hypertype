@@ -62,19 +62,20 @@ And `micro.js`, which hangs a leading quote into the margin, the one bit of poli
 
 The kit also ships as an [Agent Skill](skill/SKILL.md), a cross-agent standard that Claude Code, Cursor, and other agent tools read, so the model reaches for it on its own when you ask for a headline, a hero, or "make the type less generic."
 
+[![Install in VS Code](https://img.shields.io/badge/VS_Code-1--click_install-0098FF?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://vscode.dev/redirect?url=vscode:chat-instructions/install?url=https://raw.githubusercontent.com/sceboucher/hypertype/main/dist/hypertype.instructions.md)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-install-D97757?style=for-the-badge&logo=anthropic&logoColor=white)](https://sceboucher.github.io/hypertype/install/#claude-code)
 [![Cursor](https://img.shields.io/badge/Cursor-install-111111?style=for-the-badge)](https://sceboucher.github.io/hypertype/install/#cursor)
 [![Codex / Gemini CLI](https://img.shields.io/badge/Codex_·_Gemini_CLI-install-4285F4?style=for-the-badge)](https://sceboucher.github.io/hypertype/install/#codex-gemini-cli-and-other-agent-clis)
 [![ChatGPT / Desktop](https://img.shields.io/badge/ChatGPT_·_Desktop-paste-10A37F?style=for-the-badge&logo=openai&logoColor=white)](https://sceboucher.github.io/hypertype/install/#chatgpt-claude-desktop-and-other-chat-tools)
 
-In Claude Code, install it as a plugin:
+The **VS Code** button is a genuine one-click: it installs hypertype as a Copilot custom-instructions file. In **Claude Code**, install it as a plugin:
 
 ```
 /plugin marketplace add sceboucher/hypertype
 /plugin install hypertype@hypertype
 ```
 
-Other tools (Cursor, the agent CLIs, and pasting into ChatGPT or Claude Desktop) are a step or two each, all on the [install page](https://sceboucher.github.io/hypertype/install/). There's no one-click button: those deeplinks don't exist for skills yet.
+The rest (Cursor, the agent CLIs, pasting into ChatGPT or Claude Desktop) are a step or two each, on the [install page](https://sceboucher.github.io/hypertype/install/). Outside VS Code, no real one-click deeplink exists for skills yet.
 
 ## API
 

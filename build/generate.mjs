@@ -29,6 +29,20 @@ export function buildPasteBlock(canonical) {
   return `<!-- hypertype advanced-typography guidance, paste into project/system instructions.\n     Generated from skill/canonical.md; do not edit by hand. -->\n\n${body}\n`;
 }
 
+// A VS Code / GitHub Copilot custom-instructions file. The "Install in VS Code"
+// button (vscode:chat-instructions/install) points at this. Same guidance as
+// the paste-block, with the frontmatter VS Code expects.
+export function buildVsCodeInstructions(canonical) {
+  const body = extractPasteBlock(canonical);
+  return `---
+description: 'hypertype: intentional web typography, justified display headlines and the underused OpenType features.'
+applyTo: '**/*.{html,htm,css,scss,less,jsx,tsx,vue,svelte,astro,md,mdx}'
+---
+
+${body}
+`;
+}
+
 // A single self-contained, paste-anywhere bundle: the CSS + the slab engine
 // inlined into one HTML skeleton. This is the portable artifact-sandbox path.
 // slab.js uses ES export syntax; strip it for a classic (non-module) <script>.
@@ -85,6 +99,7 @@ function main() {
   mkdirSync(join(root, 'dist'), { recursive: true });
   writeFileSync(join(root, 'dist/hypertype-inline.html'), buildInlineBundle(css, slabJs));
   writeFileSync(join(root, 'dist/hypertype-micro.js'), microJs.replace(/^export\s+/gm, ''));
+  writeFileSync(join(root, 'dist/hypertype.instructions.md'), buildVsCodeInstructions(canonical));
 
   // Claude Code plugin layout: plugin/skills/<name>/ for `/plugin install`.
   const pluginSkill = join(root, 'plugin/skills/hypertype');
