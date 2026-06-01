@@ -1,7 +1,7 @@
 // Generator: emit skill/SKILL.md (full body) and skill/paste-block.md (the
 // condensed PASTE-BLOCK region) from skill/canonical.md, so the two carriers
 // never drift. Dev-only; never ships to client or artifact.
-import { readFileSync, writeFileSync, mkdirSync, copyFileSync, cpSync, rmSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync, cpSync, rmSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
@@ -76,6 +76,36 @@ slabAll('[data-slab]');
 `;
 }
 
+// Turn a docs/*.md guide into a Starlight content page: derive the title from the H1,
+// a description from the first sentence, drop the H1 (frontmatter renders it), and
+// rewrite cross-doc links to site routes so they resolve on the published site. Keeps
+// the guides single-sourced from docs/ (which is also what the skill bundles).
+export function buildSitePage(md) {
+  const h1 = md.match(/^#\s+(.+)$/m);
+  const title = h1 ? h1[1].trim() : 'hypertype';
+  let body = md.replace(/^#\s+.+\r?\n/m, '');
+  const firstLine = body
+    .split('\n')
+    .map((l) => l.replace(/^[>\s]+/, '').trim())
+    .find((l) => l && !l.startsWith('#') && !l.startsWith('['));
+  const description = (firstLine || title)
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/[`*_>]/g, '')
+    .slice(0, 150)
+    .trim();
+  const links = {
+    // Full links first (fix the visible text), then bare-paren fallbacks.
+    '[HIERARCHY.md](HIERARCHY.md)': '[Using hierarchy well](/hypertype/hierarchy/)',
+    '[TYPE-SYSTEMS.md](TYPE-SYSTEMS.md)': '[Building a type system](/hypertype/type-systems/)',
+    '(HIERARCHY.md)': '(/hypertype/hierarchy/)',
+    '(TYPE-SYSTEMS.md)': '(/hypertype/type-systems/)',
+    '(REFERENCE.md)': '(/hypertype/reference/)',
+    '(docs/REFERENCE.md)': '(/hypertype/reference/)',
+  };
+  for (const [from, to] of Object.entries(links)) body = body.split(from).join(to);
+  return `---\ntitle: ${JSON.stringify(title)}\ndescription: ${JSON.stringify(description)}\n---\n\n${body.trim()}\n`;
+}
+
 function main() {
   const root = dirname(dirname(fileURLToPath(import.meta.url)));
   const canonical = readFileSync(join(root, 'skill/canonical.md'), 'utf8');
@@ -111,8 +141,15 @@ function main() {
   cpSync(join(root, 'skill/references'), join(pluginSkill, 'references'), { recursive: true });
   cpSync(join(root, 'skill/assets'), join(pluginSkill, 'assets'), { recursive: true });
 
+  // Mirror the guides onto the docs site, single-sourced from docs/*.md.
+  const sitePages = join(root, 'docs-site/src/content/docs');
+  if (existsSync(sitePages)) {
+    writeFileSync(join(sitePages, 'type-systems.md'), buildSitePage(readFileSync(join(root, 'docs/TYPE-SYSTEMS.md'), 'utf8')));
+    writeFileSync(join(sitePages, 'hierarchy.md'), buildSitePage(readFileSync(join(root, 'docs/HIERARCHY.md'), 'utf8')));
+  }
+
   const tokens = Math.round(Buffer.byteLength(buildPasteBlock(canonical), 'utf8') / 4);
-  console.log(`Generated skill (SKILL.md, paste-block ~${tokens} tokens) + plugin/skills/hypertype + dist/hypertype-inline.html`);
+  console.log(`Generated skill (SKILL.md, paste-block ~${tokens} tokens) + plugin/skills/hypertype + dist + docs-site guides`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) main();

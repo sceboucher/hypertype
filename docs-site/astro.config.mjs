@@ -26,6 +26,17 @@ export default defineConfig({
           ],
         },
         {
+          label: 'The MCP server',
+          items: [{ label: 'Tools & install', slug: 'mcp' }],
+        },
+        {
+          label: 'Guides',
+          items: [
+            { label: 'Building a type system', slug: 'type-systems' },
+            { label: 'Using hierarchy well', slug: 'hierarchy' },
+          ],
+        },
+        {
           label: 'Showcase',
           items: [
             { label: 'Slab playground', slug: 'playground' },
