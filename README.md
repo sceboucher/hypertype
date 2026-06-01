@@ -4,13 +4,14 @@
 
 ### Justified display headlines and the OpenType features almost nobody turns on.<br>No dependencies. Paste it into a page.
 
-[Quick start](#quick-start) · [What's in it](#whats-in-it) · [Use as a Claude skill](#use-as-a-claude-skill) · [API](#api) · [Reference](docs/REFERENCE.md)
+[Quick start](#quick-start) · [Use as a skill](#use-it-as-a-skill) · [MCP server + install](#the-mcp-server-and-one-file-install) · [API](#api) · [Reference](docs/REFERENCE.md)
 
 ![MIT License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)
 ![Zero dependencies](https://img.shields.io/badge/dependencies-0-brightgreen?style=flat-square)
 ![~6 kB gzipped](https://img.shields.io/badge/gzipped-~6%20kB-brightgreen?style=flat-square)
-![28 tests](https://img.shields.io/badge/tests-28%20passing-brightgreen?style=flat-square)
+![53 tests](https://img.shields.io/badge/tests-53%20passing-brightgreen?style=flat-square)
 ![Works as a Claude skill](https://img.shields.io/badge/Claude-skill-8A63D8?style=flat-square)
+[![npm](https://img.shields.io/npm/v/@sceboucher/hypertype?style=flat-square&color=cb3837&label=npm%20mcp%20server)](https://www.npmjs.com/package/@sceboucher/hypertype)
 
 </div>
 
@@ -77,7 +78,7 @@ The **VS Code** button is a genuine one-click: it installs hypertype as a Copilo
 
 The rest (Cursor, the agent CLIs, pasting into ChatGPT or Claude Desktop) are a step or two each, on the [install page](https://sceboucher.github.io/hypertype/install/). Outside VS Code, no real one-click deeplink exists for skills yet.
 
-## Verify fonts for real: the MCP server
+## The MCP server and one-file install
 
 The skill tells a model to check that a font carries a feature before turning it on. [`@sceboucher/hypertype`](mcp/) lets it actually check. It's a local MCP server that reads the OpenType features and variable axes straight from the served font file, so `font-variant-caps: small-caps` on a font with no small caps comes back as a real warning instead of a silent fake. It also generates context-fit type systems and critiques typographic hierarchy from rendered CSS.
 
@@ -87,7 +88,7 @@ The skill tells a model to check that a font carries a feature before turning it
 npx -y @sceboucher/hypertype install
 ```
 
-It detects your tools (Claude Code, Cursor, VS Code, Claude Desktop), registers the MCP server idempotently, and installs the skill. The buttons and manual steps below still work if you prefer them.
+It detects your tools (Claude Code, Cursor, VS Code, Claude Desktop), registers the MCP server idempotently, and installs the skill. The full runbook (every tool, the chat-only paste path, and how to verify) is [INSTALL.md](INSTALL.md). The buttons and manual steps below still work if you prefer them.
 
 [![Add to Cursor](https://img.shields.io/badge/Cursor-add_MCP-111111?style=for-the-badge)](cursor://anysphere.cursor-deeplink/mcp/install?name=hypertype&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzY2Vib3VjaGVyL2h5cGVydHlwZSJdfQ==)
 [![Install MCP in VS Code](https://img.shields.io/badge/VS_Code-add_MCP-0098FF?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=hypertype&config=%7B%22name%22%3A%22hypertype%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40sceboucher%2Fhypertype%22%5D%7D)
@@ -135,11 +136,13 @@ No dependencies. The whole kit is about 6 kB gzipped (`slab.js` 3.2, `hypertype.
 ## Develop
 
 ```bash
-npm test            # node --test, 28 tests, zero deps
+npm test            # node --test, 30 tests, zero deps
 npm run build       # regenerate the skill files and the inline bundle from source
 ```
 
 `build/generate.mjs` keeps `SKILL.md` and `paste-block.md` in sync with [`skill/canonical.md`](skill/canonical.md). The test suite also checks the CSS stays under its size budget and that every progressive-enhancement feature stays behind `@supports`. Design notes are in [`docs/SYNTHESIS.md`](docs/SYNTHESIS.md); how it was tested is in [`docs/VERIFICATION.md`](docs/VERIFICATION.md).
+
+The MCP server lives in [`mcp/`](mcp/) with its own suite (`cd mcp && npm test`, 23 tests) and its own [README](mcp/README.md).
 
 ## License
 

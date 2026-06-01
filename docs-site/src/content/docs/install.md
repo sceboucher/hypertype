@@ -3,7 +3,23 @@ title: Install
 description: How to add the hypertype skill to Claude Code, Cursor, other agent CLIs, and chat tools.
 ---
 
-hypertype ships as a `SKILL.md` (a cross-agent standard that Claude Code, Cursor, and other agent tools read) plus a condensed paste-block for chat tools. How you add it depends on the tool. There is no one-click button yet, the deeplinks for that don't exist across these tools, so each option below is a short, real set of steps.
+hypertype installs two things: the **skill** (typography guidance every agent reads) and the optional **MCP server** (live font-feature verification, type-system generation, hierarchy critique). The fastest path sets up both. The per-tool steps further down are the by-hand alternative.
+
+## Fastest: one file, or one command
+
+Tell any AI assistant:
+
+> "Set up hypertype by following https://raw.githubusercontent.com/sceboucher/hypertype/main/INSTALL.md"
+
+It identifies its own tool, runs the install, and verifies. Or run it yourself:
+
+```sh
+npx -y @sceboucher/hypertype install
+```
+
+That detects your tools (Claude Code, Claude Desktop, Cursor, VS Code), registers the MCP server idempotently, and installs the skill. Add `--print` to preview without changing anything, or `--client claude-code|claude-desktop|cursor|vscode` to target one.
+
+**Verify:** ask the assistant to call `analyze_font` on "Source Serif 4". A correct install reports it ships tabular figures but no small caps and no slashed zero (Google serves a reduced subset). The full runbook, including the chat-only paste path, is [INSTALL.md](https://github.com/sceboucher/hypertype/blob/main/INSTALL.md).
 
 ## Claude Code
 
@@ -33,7 +49,7 @@ It uses VS Code's built-in `vscode:chat-instructions/install` handler (1.102+), 
 
 The skill tells a model to verify a font carries a feature before using it. [`@sceboucher/hypertype`](https://github.com/sceboucher/hypertype/tree/main/mcp) lets it actually check, by reading the OpenType features and variable axes straight from the served font file. It also generates context-fit type systems and critiques typographic hierarchy. It runs locally with no API key, and is the only path that can analyze your installed and Adobe-activated fonts.
 
-**Easiest install, point your AI at one file.** Tell any assistant: *"Set up hypertype by following https://raw.githubusercontent.com/sceboucher/hypertype/main/INSTALL.md"* and it installs the server and skill for whatever tool it's in. Or run it yourself: `npx -y @sceboucher/hypertype install` detects your tools, registers the MCP server, and installs the skill. The buttons and manual steps below still work if you prefer them.
+The one-command install above wires it into every tool it finds. To add it to a single tool by hand, use a button or the config below:
 
 [![Add to Cursor](https://img.shields.io/badge/Cursor-add_MCP-111111?style=for-the-badge)](cursor://anysphere.cursor-deeplink/mcp/install?name=hypertype&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBzY2Vib3VjaGVyL2h5cGVydHlwZSJdfQ==)
 [![Install MCP in VS Code](https://img.shields.io/badge/VS_Code-add_MCP-0098FF?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=hypertype&config=%7B%22name%22%3A%22hypertype%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40sceboucher%2Fhypertype%22%5D%7D)

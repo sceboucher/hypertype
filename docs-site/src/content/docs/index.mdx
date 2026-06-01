@@ -8,10 +8,14 @@ hero:
     - text: Get started
       link: /hypertype/getting-started/
       icon: right-arrow
+    - text: Install in your AI tool
+      link: /hypertype/install/
+      icon: download
+      variant: secondary
     - text: Try the playground
       link: /hypertype/playground/
       icon: right-arrow
-      variant: secondary
+      variant: minimal
     - text: GitHub
       link: https://github.com/sceboucher/hypertype
       icon: external
@@ -47,5 +51,11 @@ CSS can justify a paragraph but not a display headline. hypertype makes every li
   </Card>
   <Card title="Also a Claude skill" icon="comment">
     The kit ships as an Agent Skill too, so AI coding tools pick it up on their own. [Use as a skill →](/hypertype/skill/)
+  </Card>
+  <Card title="Verify fonts, for real" icon="approve-check-circle">
+    An optional local MCP server reads OpenType features straight from the served font, so generated CSS turns on features the font actually ships instead of silently failing. [Install in one step →](/hypertype/install/)
+  </Card>
+  <Card title="One-file install" icon="rocket">
+    Point any AI at `INSTALL.md` and it sets up the server and skill for your tool, or run `npx -y @sceboucher/hypertype install`. [How →](/hypertype/install/)
   </Card>
 </CardGrid>
